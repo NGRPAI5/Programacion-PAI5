@@ -17,26 +17,33 @@ for i in range(3):
     simbolo=0
     password=str(input("Introduce una contraseña: "))
     
-    for j in password:
-        
-        if j.isalpha()==True:
-            letras+=1
-            
-        elif j.isdigit()==True:
-            digitos+=1
-            
-        elif j in "@#~%¬&/()=":
-            simbolo+=1
-            
-    if letras<3:
-        print("No tiene tres letras.")
-        
-    if digitos<3:
-        print("No tiene tres digitos.")
-        
-    if simbolo<2:
-        print("No tiene dos símbolos.")
+    if len(password) < 6 or len(password) > 8:
+        print(f"Error, el password tiene una longitud de {len(password)} caracteres y no cumple los requisitos.")
         
     else:
-        print("Cumple con los criterios")
+        for j in password:
+            if j.isalpha():
+                letras+=1
+                
+            elif j.isdigit():
+                digitos+=1
+                
+            else:
+                simbolo+=1
         
+        cumple_todo=True 
+        
+        if letras<3:
+            print("No tiene tres letras.")
+            cumple_todo=False
+            
+        if digitos<3:
+            print("No tiene tres digitos.")
+            cumple_todo=False
+            
+        if simbolo<2:
+            print("No tiene dos símbolos.")
+            cumple_todo=False
+            
+        if cumple_todo:
+            print("Cumple con todos los criterios.")
